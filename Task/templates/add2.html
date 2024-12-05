@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3 class="text-center">Add new Item</h3>
+<div class="container my-3 p-1">
+    <div class="col-12 col-md-6 mx-auto p-3 card shadow-lg">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" class="form-control" id="title" name="title" >
+             
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                <textarea class="form-control" name="description" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="title" class="form-label">Due Date</label>
+                <input type="date" class="form-control" id="title" name="due_date" >
+               
+              </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1" name="completed">
+              <label class="form-check-label" for="exampleCheck1">Completed</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+</div>
+
+{% endblock content %}

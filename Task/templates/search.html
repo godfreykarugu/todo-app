@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3 class="text-center">Search Results</h3>
+<div class="container my-3">
+    {% if query %}
+        <p>Showing results for: <strong>{{ query }}</strong></p>
+        {% if tasks %}
+            <ul class="list-group">
+                {% for task in tasks %}
+                    <li class="list-group-item">
+                        <a href="{% url 'details' task.id %}">{{ task.title }}</a>
+                        <p>{{ task.description|truncatewords:10 }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No tasks found matching your search.</p>
+        {% endif %}
+    {% else %}
+        <p>Please enter a search query.</p>
+    {% endif %}
+</div>
+{% endblock %}

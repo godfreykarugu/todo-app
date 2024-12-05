@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3 class="text-center">All the tasks</h3>
+      <div class="container my-3 ">
+        <div class="row g-3">
+            {% for task in tasks  %}
+
+                <div class="col-12 col-md-4">
+                    <div class="card p-3 shadow-lg">
+                       <div class="title d-flex justify-content-between">
+                            {% if task.completed %}
+                                <a href="{% url 'toggle_complete' task.id %}">
+                                <i class="bi bi-check-circle bx-sm text-green-500"></i>
+                                </a>
+                                <del style="color:red;"><a href="{% url "details" task.id %}"  style="cursor: pointer; text-decoration: none "><h4>{{task.title}}</h4></a> </del>
+                            
+                            {% else %}
+                                <a href="{% url 'toggle_complete' task.id %}">
+                                    <i class="bi bi-check-circle "></i>
+                                  </a>
+                                <a href="{% url "details" task.id %}"  style="cursor: pointer; text-decoration:none; "><h4>{{task.title}}</h4></a>
+                            {% endif %}
+                            {% comment %} <a href="{% url "update" task.id %}"><i class="bi bi-pencil" style="font-size:24px; color:blue; cursor: pointer; "></i></a> {% endcomment %}
+                            <a href="{% url "update2" task.id %}"><i class="bi bi-pencil" style="font-size:24px; color:blue; cursor: pointer; "></i></a>
+                        </div>
+
+                        <p>
+                       
+                            {{task.description | slice:":80"}}... <br>
+                        </p>
+                       <div class="footer d-flex justify-content-between">
+                        <p><span style="font-weight: bold;">Due Date:</span> {{task.date_due}} <br></p>
+                        <a href="{% url "delete" task.id %}"><i class="bi bi-trash3" style="color:#f00; font-size:18px; cursor: pointer;"></i></a>
+                       </div>
+            
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+      </div>
+{% endblock content %}
+

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+      <div class="container mt-3 ">
+        <div class="row g-3">
+           
+
+                <div class="col-12 col-md-5 mx-auto">
+                    <div class="card p-3 shadow-lg">
+                       <div class="title d-flex justify-content-center">
+                            {% if task.completed %}
+                                <del style="color:red;"><h2 style="color:black;" ><em>Task: </em>{{task.title}}</h2> </del>
+                                {% else %}
+                                <h2><em>Task: </em>{{task.title}}</h2> 
+                            {% endif %}
+                           
+                        </div>
+                       <p>
+                        
+                       </p>
+                        <p>
+                       
+                            {{task.description}} <br>
+                        </p>
+                        <hr>
+                        <div class="d-flex justify-content-between pb-2">
+                            <p>
+                                <strong>Due Date:</strong> <em>{{task.date_due}} </em>
+                            </p>
+                            <p >
+                                <strong>Status:</strong> <em>{% if task.completed %} Completed {% else %}<h6 style="color:red;margin:0">Pending</h6> {% endif %}</em>
+                            </p>
+                        </div>
+                        <a href="{% url "home" %}" class="btn btn-secondary text-center"> Back</a>
+                    </div>
+                    
+                </div>
+                
+            {% comment %} {% endfor %} {% endcomment %}
+        </div>
+
+        
+
+      </div>
+{% endblock content %}
+
+
+

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3 class="text-center">update <span style="font-weight:bold">{{task}}</span></h3>
+<div class="container my-3 p-1">
+    <div class="col-12 col-md-6 mx-auto p-3 card shadow-lg">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" class="form-control" id="title" name="title" value="{{ task.title }}" required >
+             
+             
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                <textarea class="form-control" name="description" rows="3">{{ task.description }}</textarea>
+            </div>
+            <div class="mb-3">
+                <label for="title" class="form-label">Due Date</label>
+                <input type="date" class="form-control" id="due_date" name="due_date" value="{{ task.date_due|date:'Y-m-d' }}" required >
+               
+              </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1" name="completed" {% if task.completed %}checked{% endif %}>
+              <label class="form-check-label" for="exampleCheck1">Completed</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          <a href="{% url 'home' %} " class="btn btn-primary">Cancel</a>
+    </div>
+</div>
+
+{% endblock content %}
